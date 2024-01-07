@@ -43,6 +43,7 @@ export class BuscarLocalizacionComponent {
           'id': idSist,
           'codzip': this.searchForm.value.codzip,
           'name': res.name,
+          'state': res.weather[0].main,
           'icon': res.weather[0].icon,
           'temp': res.main.temp,
           'temp_min': res.main.temp_min,
