@@ -1,26 +1,35 @@
 <div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb" style="background-color: #f2f6fb;">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="linkbtn" (click)="goInicio()">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Forecast</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
     <div class="row mb-3">
         <div class="col-12">
-          <div class="card mb-4 rounded-3 shadow-sm">
-            <div class="card-header text-center py-3">
-              <h4 class="my-0 fw-normal">{{ titulo }}</h4>
-            </div>
-            <div class="card-body">
-              <div class="row" *ngFor="let item of datoArray">
-                <div class="col-12">
-                    <p>{{ item.dia }}: {{ item.estado }}  - Higt: {{ item.high }} - Low: {{ item.low }} <img [src]="item.icon" alt="weather icon"  width="50" height="auto"/></p>
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header text-center py-3">
+                    <h4 class="my-0 fw-normal">{{ titulo }}</h4>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col text-center">
-                    <a (click)="goInicio()"  class="btn btn-lg btn-outline-primary">Home</a>
-                    <!-- 
-                    <a (click)="moreInformation()"  class="btn btn-lg btn-outline-primary">Show information</a>
-                    -->
+                <div class="card-body">
+                    <div class="row" *ngFor="let item of datoArray">
+                        <div class="col-12">
+                            <p>{{ item.dia }}: {{ item.estado }} - Higt: {{ item.high }} - Low: {{ item.low }} 
+                                <img [src]="item.icon" alt="weather icon" width="50" height="auto" />
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <a (click)="goBack()" class="btn btn-lg btn-outline-primary">Go back</a>
+                        </div>
+                    </div>
                 </div>
-              </div>          
             </div>
-          </div>
         </div>
     </div>
 </div>

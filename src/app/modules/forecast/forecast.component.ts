@@ -155,5 +155,7 @@ export class ForecastComponent implements OnInit {
     localStorage.removeItem("myKeyL");
     this.routerSend.navigate(['/']);
   }
-
+  goBack(): void {
+    this.routerSend.navigate(['/']);
+  }
 }

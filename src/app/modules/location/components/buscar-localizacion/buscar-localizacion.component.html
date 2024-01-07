@@ -1,4 +1,13 @@
-<div class="container">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb" style="background-color: #f2f6fb;">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Home</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
     <h1>{{ titulo }}</h1>
     <div>
         <form (ngSubmit)="search()" [formGroup]="searchForm" >
