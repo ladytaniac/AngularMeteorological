@@ -70,6 +70,8 @@ export class BuscarLocalizacionComponent implements OnInit {
         this.mylocation = location;
         let objStorage= {
           'id': idSist,
+          'lat': res.coord.lat,
+          'lon': res.coord.lon,
           'codzip': this.searchForm.value.codzip,
           'name': res.name,
           'state': res.weather[0].main,

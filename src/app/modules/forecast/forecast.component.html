@@ -16,9 +16,9 @@
                     <h4 class="my-0 fw-normal">{{ titulo }}</h4>
                 </div>
                 <div class="card-body">
-                    <div class="row" *ngFor="let item of datoArray">
+                    <div class="row" *ngFor="let item of datoArrayServ">
                         <div class="col-12">
-                            <p>{{ item.dia }}: {{ item.estado }} - Higt: {{ item.high }} - Low: {{ item.low }} 
+                            <p>{{ item.dia }}: {{ item.dt_txt }} - weather:{{ item.estado }} - Higt: {{ item.high }} - Low: {{ item.low }} 
                                 <img [src]="item.icon" alt="weather icon" width="50" height="auto" />
                             </p>
                         </div>
