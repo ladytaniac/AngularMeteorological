@@ -25,7 +25,7 @@ export class ForecastComponent implements OnInit {
       this.titulo = JSON.parse(siKey).name;
       this.latitud = JSON.parse(siKey).lat;
       this.longitud = JSON.parse(siKey).lon;
-      var day = new Date().getDay();
+      /*var day = new Date().getDay();
       let objStorage = {
         'dia': this.getDia(day),
         'estado': JSON.parse(siKey).state,
@@ -33,7 +33,7 @@ export class ForecastComponent implements OnInit {
         'low': JSON.parse(siKey).temp_min,
         'icon': "http://openweathermap.org/img/w/" + JSON.parse(siKey).icon + ".png"
       }
-      this.datoArray.push(objStorage);
+      this.datoArray.push(objStorage);*/
     } else {
       this.objStorage = '';
     }
@@ -41,6 +41,18 @@ export class ForecastComponent implements OnInit {
 
   ngOnInit(): void {
     this.recuperandoLista();
+    if (this.objStorage != '') {
+      this.route.params.subscribe(params => {
+        this.id = params['id'];
+        if (this.objStorage != '') {
+          this.titulo = this.titulo + ' (' + this.id + ')';
+        } else {
+          this.titulo = '';
+        }
+      });
+    } else {
+      this.titulo = '';
+    }
     /*
     this.objetoPrueba();
     console.log('entre a otra pagina');
@@ -69,7 +81,7 @@ export class ForecastComponent implements OnInit {
   recuperandoLista(): void {
     var ruta = this.urlApi + '?lat=' + this.latitud + '&lon=' + this.longitud + '&appid=' + environment.appId + '&cnt=5';
     this.http.get(ruta).subscribe((res: any) => {
-      console.log('lis=', res);
+      // console.log('lis=', res);
       var lista = res.list;
       for (let lst of lista) {
         let obj = {
@@ -87,9 +99,8 @@ export class ForecastComponent implements OnInit {
       this.datoArrayServ = [];
     });
   }
-
+  /*
   objetoPrueba(): void {
-    /* Objeto prueba solo porque no me funciono el servicio */
     let obj = {
       'estado': 'Sunny',
       'high': 78,
@@ -176,7 +187,7 @@ export class ForecastComponent implements OnInit {
         };
       }
     }
-  }
+  }*/
   goInicio(): void {
     // this.routerSend.navigate(['/forecast', this.localizacion.codzip]);
     // Eliminamos localStorage
