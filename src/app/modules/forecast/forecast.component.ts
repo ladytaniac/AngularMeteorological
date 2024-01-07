@@ -79,21 +79,29 @@ export class ForecastComponent implements OnInit {
   }
 
   recuperandoLista(): void {
-    var ruta = this.urlApi + '?lat=' + this.latitud + '&lon=' + this.longitud + '&appid=' + environment.appId + '&cnt=5';
+    // var ruta = this.urlApi + '?lat=' + this.latitud + '&lon=' + this.longitud + '&appid=' + environment.appId + '&cnt=5';
+    var ruta = this.urlApi + '?lat=' + this.latitud + '&lon=' + this.longitud + '&appid=' + environment.appId;
     this.http.get(ruta).subscribe((res: any) => {
       // console.log('lis=', res);
       var lista = res.list;
+      var numDiaAux =10;
       for (let lst of lista) {
-        let obj = {
-          dia: this.getDia(new Date(lst.dt_txt).getDay()),
-          estado: lst.weather[0].main,
-          description: lst.weather[0].description,
-          high: lst.main.temp_max,
-          low: lst.main.temp_min,          
-          icon: "http://openweathermap.org/img/w/" + lst.weather[0].icon+ ".png",
-          dt_txt: lst.dt_txt
+        const numeroDia = new Date(lst.dt_txt).getDay();
+        if(this.datoArrayServ.length <= 4) {
+          if(numDiaAux != numeroDia) {
+            let obj = {
+              dia: this.getDia(new Date(lst.dt_txt).getDay()),
+              estado: lst.weather[0].main,
+              description: lst.weather[0].description,
+              high: lst.main.temp_max,
+              low: lst.main.temp_min,          
+              icon: "http://openweathermap.org/img/w/" + lst.weather[0].icon+ ".png",
+              dt_txt: lst.dt_txt
+            }
+            this.datoArrayServ.push(obj);
+            numDiaAux=numeroDia;
+          }
         }
-        this.datoArrayServ.push(obj);
       }
     }, (error) => {
       this.datoArrayServ = [];
